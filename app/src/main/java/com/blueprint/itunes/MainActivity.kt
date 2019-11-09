@@ -13,6 +13,11 @@ import com.blueprint.itunes.presentation.adapter.TrackAdapter
 import com.blueprint.itunes.viewmodel.TracksModel
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import androidx.databinding.adapters.TextViewBindingAdapter.setText
+import android.text.Editable
+import android.text.TextWatcher
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,10 +37,27 @@ class MainActivity : AppCompatActivity() {
                 super.onScrollStateChanged(recyclerView, newState)
 
                 if (!recyclerView.canScrollVertically(1)) {
-                    
+
                 }
             }
         })
+
+        val watcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                model.search.value = s.toString()
+
+            }
+        }
+        search_text.addTextChangedListener(watcher)
+
 
         model.getTracks().observe(this, object : Observer<List<Track>> {
             override fun onChanged(@Nullable data: List<Track>) {

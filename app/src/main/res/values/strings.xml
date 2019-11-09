@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Itunes</string>
+    <string name="search_music_hint">Escribe un tema</string>
 </resources>
