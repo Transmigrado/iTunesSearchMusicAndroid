@@ -31,7 +31,7 @@ class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapte
         val track = tracks.get(position)
         holder.itemView.setOnClickListener {
             val intent = Intent(this.ctx, DetailTrack::class.java).apply {
-
+                this.putExtra("data", track)
             }
             this.ctx.startActivity(intent)
         }

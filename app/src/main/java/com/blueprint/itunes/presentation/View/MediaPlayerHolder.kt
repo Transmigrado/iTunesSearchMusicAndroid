@@ -5,7 +5,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 
-class MediaPlayerHolder(ctx:Context, url:String) {
+class MediaPlayerHolder(ctx:Context, url:String?) {
 
     var mediaPlayer : MediaPlayer
 
