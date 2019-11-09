@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.blueprint.itunes.model.Track
 import com.blueprint.itunes.presentation.adapter.TrackAdapter
 import com.blueprint.itunes.viewmodel.TracksModel
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        list.layoutManager = LinearLayoutManager(this)
+        list.layoutManager = GridLayoutManager(this,2)
         val model = ViewModelProviders.of(this).get(TracksModel::class.java!!)
 
 
