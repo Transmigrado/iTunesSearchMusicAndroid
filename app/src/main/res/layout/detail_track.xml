@@ -12,4 +12,41 @@
             android:id="@+id/image"
             android:transitionName="cover"
             android:scaleType="centerCrop"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+    >
+
+        <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/track_name"
+                android:transitionName="trackName"
+                android:textSize="30dp"
+        />
+        <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:transitionName="artistName"
+                android:layout_height="wrap_content" android:id="@+id/artist_name"/>
+        <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/description"/>
+        <SeekBar
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/progress"/>
+        <ImageButton
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_media_play"
+                android:id="@+id/play_button"/>
+    </LinearLayout>
+
+
 </LinearLayout>

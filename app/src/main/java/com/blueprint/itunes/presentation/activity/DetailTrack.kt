@@ -21,7 +21,13 @@ class DetailTrack : AppCompatActivity() {
         Picasso.get().load(track.artworkUrl100).into(image)
         playerHolder = MediaPlayerHolder(this, track.previewUrl)
 
+        artist_name.text = track.artistName
+        track_name.text = track.trackName
+        description.text = track.shortDescription
 
+        play_button.setOnClickListener {
+            playerHolder.toggle()
+        }
 
     }
 

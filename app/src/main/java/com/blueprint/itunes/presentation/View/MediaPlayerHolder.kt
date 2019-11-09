@@ -29,6 +29,14 @@ class MediaPlayerHolder(ctx:Context, url:String?) {
         }
     }
 
+    fun toggle(){
+        if(!mediaPlayer.isPlaying()){
+            mediaPlayer.start()
+        }else{
+            mediaPlayer.pause()
+        }
+    }
+
     fun stop(){
         mediaPlayer.stop()
     }

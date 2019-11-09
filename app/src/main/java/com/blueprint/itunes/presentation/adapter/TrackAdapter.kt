@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_view.view.*
 import androidx.core.app.ActivityOptionsCompat
 import android.app.Activity
+import androidx.core.util.Pair
+import android.view.View
 
 
 class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapter<TrackHolder>() {
@@ -36,8 +38,14 @@ class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapte
             val intent = Intent(this.ctx, DetailTrack::class.java).apply {
                 this.putExtra("data", track)
             }
-            val activityOptionsCompat = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(ctx as Activity, holder.itemView.image, "cover")
+
+
+            val coverAnim = Pair.create(holder.itemView.image as View, "cover")
+            val trackNameAnim = Pair.create(holder.itemView.track_name as View, "trackName")
+            val artistNameAnim = Pair.create(holder.itemView.artist_name as View, "artistName")
+
+            val activityOptionsCompat= ActivityOptionsCompat.makeSceneTransitionAnimation(ctx as Activity, coverAnim, trackNameAnim, artistNameAnim)
+
             this.ctx.startActivity(intent, activityOptionsCompat.toBundle())
         }
         holder.itemView.artist_name.text = track.artistName
