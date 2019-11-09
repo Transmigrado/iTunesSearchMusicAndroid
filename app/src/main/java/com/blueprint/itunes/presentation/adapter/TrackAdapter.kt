@@ -11,6 +11,8 @@ import com.blueprint.itunes.R
 import com.blueprint.itunes.presentation.activity.DetailTrack
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_view.view.*
+import androidx.core.app.ActivityOptionsCompat
+import android.app.Activity
 
 
 class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapter<TrackHolder>() {
@@ -30,10 +32,13 @@ class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: TrackHolder, position: Int) {
         val track = tracks.get(position)
         holder.itemView.setOnClickListener {
+
             val intent = Intent(this.ctx, DetailTrack::class.java).apply {
                 this.putExtra("data", track)
             }
-            this.ctx.startActivity(intent)
+            val activityOptionsCompat = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(ctx as Activity, holder.itemView.image, "cover")
+            this.ctx.startActivity(intent, activityOptionsCompat.toBundle())
         }
         holder.itemView.artist_name.text = track.artistName
         holder.itemView.track_name.text = track.trackName
