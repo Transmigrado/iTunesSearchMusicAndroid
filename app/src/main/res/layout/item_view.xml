@@ -6,7 +6,7 @@
               android:layout_height="wrap_content">
 
     <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/image"
             android:layout_width="0dp"
             android:layout_height="160dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/imageView"
+            app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@color/overlay"

@@ -7,6 +7,8 @@ import com.blueprint.itunes.model.Track
 import com.blueprint.itunes.presentation.holder.TrackHolder
 import android.view.LayoutInflater
 import com.blueprint.itunes.R
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_view.view.*
 
 
 class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapter<TrackHolder>() {
@@ -24,7 +26,10 @@ class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: TrackHolder, position: Int) {
-
+        val track = tracks.get(position)
+        holder.itemView.artist_name.text = track.artistName
+        holder.itemView.track_name.text = track.trackName
+        Picasso.get().load(track.artworkUrl100).into(holder.itemView.image)
     }
 
     init {
