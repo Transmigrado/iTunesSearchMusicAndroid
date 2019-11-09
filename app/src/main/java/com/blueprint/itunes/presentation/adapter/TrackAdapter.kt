@@ -5,21 +5,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.blueprint.itunes.model.Track
 import com.blueprint.itunes.presentation.holder.TrackHolder
+import android.view.LayoutInflater
+import com.blueprint.itunes.R
 
-class ClassAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapter<TrackHolder>() {
+
+class TrackAdapter(ctx: Context, tracks: ArrayList<Track>) : RecyclerView.Adapter<TrackHolder>() {
+
+    var ctx: Context
+    var tracks: ArrayList<Track>
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val view = LayoutInflater.from(ctx).inflate(R.layout.item_view, parent, false)
+        return TrackHolder(view)
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       return tracks.size
     }
 
     override fun onBindViewHolder(holder: TrackHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     init {
-
+        this.ctx = ctx
+        this.tracks = tracks
     }
 }
