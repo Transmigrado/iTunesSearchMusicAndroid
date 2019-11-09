@@ -1,5 +1,6 @@
 package com.blueprint.itunes.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
@@ -10,7 +11,7 @@ import com.blueprint.itunes.model.Track
 class TracksModel : ViewModel(){
 
     private var tracks: MutableLiveData<ArrayList<Track>>? = null
-
+    private var pages : Int = 0
 
     fun getTracks(): LiveData<ArrayList<Track>> {
 
@@ -19,16 +20,14 @@ class TracksModel : ViewModel(){
             loadTracks()
         }
 
-
         return tracks as MutableLiveData<ArrayList<Track>>
     }
-
 
 
     private fun loadTracks() {
 
         val rest = RestTrack()
-        rest.fetch("foals", object : RestTrack.CallBack {
+        rest.fetch("foals", pages, object : RestTrack.CallBack {
             override fun response(tracks: ArrayList<Track>) {
                 this@TracksModel.tracks!!.value = tracks
             }

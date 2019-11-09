@@ -13,8 +13,8 @@ class RestTrack {
         servicesApiInterface = ApiClient.getApiClient()
     }
 
-    fun fetch(author:String, callback: CallBack){
-        servicesApiInterface.tracks(author,object : Callback<TrackSearchResponse> {
+    fun fetch(author:String, pages: Int, callback: CallBack){
+        servicesApiInterface.tracks(author,pages * 20,object : Callback<TrackSearchResponse> {
             override fun success(trackResponse: TrackSearchResponse?, response: Response) {
                 callback.response(trackResponse!!.results)
             }

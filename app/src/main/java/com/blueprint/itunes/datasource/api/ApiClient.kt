@@ -38,7 +38,7 @@ class ApiClient {
 
     interface ServicesApiInterface {
         @GET("/search?mediaType=music&limit=20")
-        fun tracks(@Query("term") music:String, callback: Callback<TrackSearchResponse>)
+        fun tracks(@Query("term") music:String,@Query("offset") offset:Int, callback: Callback<TrackSearchResponse>)
     }
 
 
