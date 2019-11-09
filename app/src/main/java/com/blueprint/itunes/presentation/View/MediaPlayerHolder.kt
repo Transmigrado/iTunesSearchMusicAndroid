@@ -1,7 +1,6 @@
 package com.blueprint.itunes.presentation.View
 
 import android.content.Context
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 
@@ -28,6 +27,10 @@ class MediaPlayerHolder(ctx:Context, url:String?) {
         if(mediaPlayer.isPlaying()){
             mediaPlayer.pause()
         }
+    }
+
+    fun stop(){
+        mediaPlayer.stop()
     }
 
 
