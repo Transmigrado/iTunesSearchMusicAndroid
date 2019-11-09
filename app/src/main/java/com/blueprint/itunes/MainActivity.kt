@@ -1,5 +1,6 @@
 package com.blueprint.itunes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,11 +14,9 @@ import com.blueprint.itunes.presentation.adapter.TrackAdapter
 import com.blueprint.itunes.viewmodel.TracksModel
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import android.text.Editable
 import android.text.TextWatcher
-
-
+import com.blueprint.itunes.presentation.activity.DetailTrack
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
 
         val watcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
