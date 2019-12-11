@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 import com.blueprint.itunes.datasource.api.RestTrack
 import com.blueprint.itunes.model.Track
+import org.koin.core.context.GlobalContext.get
 
 
-class TracksModel : ViewModel(){
+class TracksModel (val rest : RestTrack) : ViewModel(){
 
     private var tracks: MutableLiveData<ArrayList<Track>>? = null
     val search = MutableLiveData<String>()
@@ -15,6 +16,7 @@ class TracksModel : ViewModel(){
     private var pages : Int = 0
 
     init {
+
         search.observeForever {
             loadTracks()
         }
@@ -37,8 +39,8 @@ class TracksModel : ViewModel(){
             return
         }
 
-        val rest = RestTrack()
-        rest.fetch(search?.value!!, pages, object : RestTrack.CallBack {
+
+        rest.fetch(search.value!!, pages, object : RestTrack.CallBack {
             override fun response(tracks: ArrayList<Track>) {
                 this@TracksModel.tracks!!.value = tracks
             }

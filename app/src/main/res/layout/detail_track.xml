@@ -1,52 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
 
-    <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            tools:srcCompat="@tools:sample/avatars"
-            android:id="@+id/image"
-            android:transitionName="cover"
-            android:scaleType="centerCrop"/>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="track"
+                type="com.blueprint.itunes.model.Track"/>
+        <variable
+                name="media"
+                type="com.blueprint.itunes.presentation.view.MediaPlayerHolder"/>
+    </data>
 
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-    >
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
 
-        <TextView
-                android:text="TextView"
+        <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/track_name"
-                android:transitionName="trackName"
-                android:textSize="30dp"
-        />
-        <TextView
-                android:text="TextView"
+                android:layout_height="200dp"
+                tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/image"
+                android:transitionName="cover"
+                android:scaleType="centerCrop"/>
+
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:transitionName="artistName"
-                android:layout_height="wrap_content" android:id="@+id/artist_name"/>
-        <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/description"/>
-        <SeekBar
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/progress"/>
-        <ImageButton
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" app:srcCompat="@android:drawable/ic_media_play"
-                android:id="@+id/play_button"/>
+                android:layout_height="match_parent"
+                android:padding="10dp"
+        >
+
+            <TextView
+                    android:text="@{track.trackName}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/track_name"
+                    android:transitionName="trackName"
+                    android:textSize="30dp"
+            />
+            <TextView
+                    android:text="@{track.artistName}"
+                    android:layout_width="match_parent"
+                    android:transitionName="artistName"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/artist_name"/>
+            <TextView
+                    android:text="@{track.shortDescription}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/description"/>
+            <TextView
+                    android:text="@{media.progressString}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <SeekBar
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:max="@{media.duration}"
+                    android:min="0"
+                    android:progress="@{media.progress}"
+                    android:layout_height="wrap_content" android:id="@+id/progress"/>
+            <ImageButton
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@android:drawable/ic_media_play"
+                    android:id="@+id/play_button"
+                    android:onClick="@{() -> media.toggle()}"
+            />
+        </LinearLayout>
+
+
     </LinearLayout>
-
-
-</LinearLayout>
+</layout>

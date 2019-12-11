@@ -2,11 +2,13 @@ package com.blueprint.itunes.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.blueprint.itunes.BR
 import com.blueprint.itunes.R
+import com.blueprint.itunes.databinding.DetailTrackBinding
 import com.blueprint.itunes.model.Track
-import com.blueprint.itunes.presentation.View.MediaPlayerHolder
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.detail_track.*
+import com.blueprint.itunes.presentation.view.MediaPlayerHolder
+
 
 class DetailTrack : AppCompatActivity() {
 
@@ -14,21 +16,14 @@ class DetailTrack : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.detail_track)
 
         val track = this.intent.getParcelableExtra<Track>("data")
 
-        Picasso.get().load(track.artworkUrl100).into(image)
         playerHolder = MediaPlayerHolder(this, track.previewUrl)
 
-        artist_name.text = track.artistName
-        track_name.text = track.trackName
-        description.text = track.shortDescription
-
-        play_button.setOnClickListener {
-            playerHolder.toggle()
-        }
-
+        val binding : DetailTrackBinding =  DataBindingUtil.setContentView(this, R.layout.detail_track)
+        binding.setVariable(BR.track, track)
+        binding.setVariable(BR.media, playerHolder)
     }
 
     override fun onDestroy() {
